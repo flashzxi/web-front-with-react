@@ -1,0 +1,45 @@
+
+.hint{
+    background-color: black;
+    border-radius: 7px;
+    width: 100%;
+}
+
+.icon {
+    margin: 3px;
+    vertical-align:middle;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}
+
+.hintText {
+    margin-left: 8px;
+    font-size: 18px;
+    vertical-align:middle;
+    display: inline-block;
+    inset-inline: true;
+    color: aliceblue;
+}
+
+#textArea{
+    margin-top: 5px;
+    border-radius: 7px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    height: 38px;
+    padding: 6px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+#textIcon{
+    color: white;
+    transition: 0.5s;
+}
+
+#fileicon{
+    transition: 0.5s;
+}
