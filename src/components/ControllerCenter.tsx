@@ -12,7 +12,8 @@ interface ControllerState{
         icon: string,
         text: string,
         url?: string
-    }[]
+    }[],
+    currentPage: string
 }
 
 class ControllerCenter extends React.Component<ControllerCenterProps, ControllerState>{
@@ -24,7 +25,8 @@ class ControllerCenter extends React.Component<ControllerCenterProps, Controller
             },
             {
                 icon: './imgs/icons/netdisk.svg',
-                text: 'Net-Disk'
+                text: 'Net-Disk',
+                url: 'netdisk'
             },
             {
                 icon: './imgs/icons/PPT.svg',
@@ -43,15 +45,31 @@ class ControllerCenter extends React.Component<ControllerCenterProps, Controller
         
         this.state = {
             itemList: itemList,
+            currentPage: ""
         }
         
+        this.updateCurrentPage = this.updateCurrentPage.bind(this)
+    }
+
+    updateCurrentPage(currentPage: string){
+        this.setState({
+            currentPage: currentPage
+        })
     }
 
     render(): React.ReactNode {
         // console.log(this.state.itemList)
         let subProject = this.state.itemList.map((item)=>
-            <li key={item.text}><Item icon={item.icon} text={item.text} /></li>
+            <li key={item.text}>
+                <Item icon={item.icon} 
+                    text={item.text} 
+                    url={item.url} 
+                    currentPage={this.state.currentPage}
+                    handleClick={this.updateCurrentPage}
+                />
+            </li>
         )
+        console.log(subProject)
 
         return (
             <div className={styles.nav}>

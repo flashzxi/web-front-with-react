@@ -5,11 +5,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import BeiAn from './components/BeiAn';
 import styles from "./components/css/ControllerCenter.module.css"
+import Error from './Error';
 
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
-  Link
+  Link,
+  Routes
 } from "react-router-dom";
 import NetDisk from './components/NetDisk';
 
@@ -19,12 +21,18 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
       <div className="wrap">
-        <div className="controller">
-          <ControllerCenter></ControllerCenter>
-        </div>
-        <div className="router">
-          <NetDisk/>
-        </div>
+        <BrowserRouter basename='/'>
+          <div className="controller">
+            <ControllerCenter/>
+          </div>
+          <div className="router">
+            <Routes>
+              {/* <Route path='/' element={<NetDisk/>}></Route> */}
+              <Route path='netdisk' element={<NetDisk/>}></Route>
+              <Route path='error' element={<Error/>}></Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
         <BeiAn/>
       </div>
     </React.StrictMode>
