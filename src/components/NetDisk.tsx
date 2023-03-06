@@ -87,6 +87,7 @@ class NetDisk extends React.Component<netdiskProps, netdiskState> {
             placeholder="edit me" 
             // onBlur={this.handleTextBlur}
             onChange={this.handleTextChange}
+            value={this.state.textValue}
           />
         </div>
         <div className='space'></div>
