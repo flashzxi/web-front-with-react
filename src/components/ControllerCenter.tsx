@@ -55,6 +55,14 @@ class ControllerCenter extends React.Component<ControllerCenterProps, Controller
         this.setState({
             currentPage: currentPage
         })
+
+        if(currentPage==="PPT"){
+            const w = window //这里是打开新窗口
+            let url = 'http://ppt.flashzxi.cn';
+            if(w){
+                w.location.href = url //这样就可以跳转了
+            }
+        }
     }
 
     render(): React.ReactNode {
