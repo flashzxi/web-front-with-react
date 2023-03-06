@@ -25,7 +25,7 @@ class NetDisk extends React.Component<netdiskProps, netdiskState> {
   }
   
   componentDidMount(): void {
-    Api.get('textCache/')
+    Api.get('textcache/')
       .then((response: any)=>{
         this.setState({
           textValue : response.data.text
