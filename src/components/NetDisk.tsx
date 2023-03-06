@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react"
 import styles from "./css/netdisk.module.css"
+import Api from "../axios/Api";
 
 interface netdiskProps {
 }
@@ -21,9 +22,17 @@ class NetDisk extends React.Component<netdiskProps, netdiskState> {
     this.handleTextClick = this.handleTextClick.bind(this)
     this.handleFileClick = this.handleFileClick.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
-    this.handleTextBlur = this.handleTextBlur.bind(this)
   }
   
+  componentDidMount(): void {
+    Api.get('textCache/')
+      .then((response: any)=>{
+        this.setState({
+          textValue : response.data.text
+        })
+      })
+  }
+
   handleTextClick(){
     let textIcon = document.getElementById(styles.textIcon);
     if(textIcon){
@@ -54,14 +63,15 @@ class NetDisk extends React.Component<netdiskProps, netdiskState> {
     }
   }
 
-  handleTextBlur(){
-    alert(this.state.textValue)
-  }
-
   handleTextChange(event: ChangeEvent<HTMLTextAreaElement>){
+    let newText = event.target.value
     this.setState({
-      textValue: event.target.value,
+      textValue: newText,
     });
+
+    Api.post("textcache/", {
+      text: newText
+    })
   }
 
   render(): React.ReactNode{
@@ -75,7 +85,7 @@ class NetDisk extends React.Component<netdiskProps, netdiskState> {
           <textarea 
             id={styles.textArea} 
             placeholder="edit me" 
-            onBlur={this.handleTextBlur}
+            // onBlur={this.handleTextBlur}
             onChange={this.handleTextChange}
           />
         </div>
